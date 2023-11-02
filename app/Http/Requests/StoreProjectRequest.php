@@ -30,9 +30,10 @@ class StoreProjectRequest extends FormRequest
                  'string',
                  Rule::unique('projects')
                 ],
-            'description'=> ['required', 'string'],
+            'description'=> ['required', 'string'],           
             'link'=> ['required', 'url'],
-            'type_id' => ['nullable','exists:types,id'] 
+            'type_id' => ['nullable','exists:types,id'] ,
+            'technologies'=> ['nullable', 'exists:technologies,id'],
         ];
     }
 
@@ -49,6 +50,8 @@ class StoreProjectRequest extends FormRequest
             'link.string'=> 'Il link deve essere un URL',
 
             'type_id.exists' => 'La tipologia inserita non è valida',
+
+            'technologies.exists' => 'Le Tecnologie inserite non sono valide',
         ];
     }
 }
