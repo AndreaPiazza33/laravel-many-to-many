@@ -19,6 +19,7 @@
                     <th scope="col">Id</th>
                     <th scope="col">Title</th>
                     <th scope="col">Type</th>
+                    <th scope="col">Technologies</th>
                     <th scope="col">Description</th>
                     <th scope="col">Link</th>
                     <th scope="col">Slug</th>
@@ -31,6 +32,7 @@
                         <th scope="row">{{ $project->id }}</th>
                         <td>{{ $project->title }}</td>
                         <td>{!! $project->getTypeBadge() !!}</td>
+                        <td>{!! $project->getTechnologyBadges() !!}</td>
                         <td>{{ $project->description }}</td>
                         <td><a href="#">{{ $project->link }}</a></td>
                         <td>{{ $project->slug }}</td>

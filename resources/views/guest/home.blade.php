@@ -7,7 +7,7 @@
             @forelse ($projects as $project)
                 <div class="col-4">
                     <div class="card h-100">
-                        <div class="card-header d-flex justify-content-between">
+                        <div class="card-header d-flex justify-content-between align-items-start">
                             {{ $project->title }}
                             {!! $project->getTypeBadge() !!}
                         </div>
