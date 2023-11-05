@@ -33,14 +33,22 @@
             </div>
 
             <div class="col-12 mt-3">
-                <label for="cover_image" class="form-label ">Immagine di Copertina</label>
-                <input type="file" name="cover_image" id="cover_image"
-                    class="form-control @error('cover_image') is-invalid @enderror" value="{{ old('cover_image') }}">
-                @error('cover_image')
-                    <div class="invalid-feedback">
-                        {{ $message }}
+                <div class="d-flex align-items-center row">
+                    <div class="col-10">
+                        <label for="cover_image" class="form-label ">Immagine di Copertina</label>
+                        <input type="file" name="cover_image" id="cover_image"
+                            class="form-control @error('cover_image') is-invalid @enderror"
+                            value="{{ old('cover_image') }}">
+                        @error('cover_image')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
-                @enderror
+                    <div class="col-2">
+                        <img src="" class ="img-fluid" id="cover_image_preview" alt="">
+                    </div>
+                </div>
             </div>
 
             <div class="col-12 mt-3">
@@ -107,4 +115,16 @@
     </div>
 
     </form>
+@endsection
+
+@section('scripts')
+    <script type="text/javascript">
+        const inputFileElement = document.getElementById('cover_image');
+        const coverImagePreview = document.getElementById('cover_image_preview');
+
+        inputFileElement.addEventListener('change', function() {
+            const [file] = this.files;
+            coverImagePreview.src = URL.createObjectURL(file)
+        });
+    </script>
 @endsection

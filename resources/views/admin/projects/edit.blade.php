@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+
 @section('content-header')
     <h1 class="my-3">Modifica Progetti</h1>
     <a href="{{ route('admin.projects.index') }}" class="btn btn-primary mt-3">Torna indietro</a>
@@ -32,7 +33,6 @@
             </div>
 
             <div class="col-12 mt-3">
-
                 <div class="d-flex align-items-center row">
                     <div class="col-10">
                         <label for="cover_image" class="form-label ">Immagine di Copertina</label>
@@ -46,10 +46,10 @@
                         @enderror
                     </div>
                     <div class="col-2">
-                        <img src="{{ asset('/storage/' . $project->cover_image) }}" class ="img-fluid" alt="">
+                        <img src="{{ asset('/storage/' . $project->cover_image) }}" class ="img-fluid"
+                            id="cover_image_preview" alt="">
                     </div>
                 </div>
-
             </div>
 
             <div class="col-12 mt-3">
@@ -97,6 +97,17 @@
                 </button>
             </div>
     </div>
-
     </form>
+@endsection
+
+@section('scripts')
+    <script type="text/javascript">
+        const inputFileElement = document.getElementById('cover_image');
+        const coverImagePreview = document.getElementById('cover_image_preview')
+
+        inputFileElement.addEventListener('change', function() {
+            const [file] = this.files;
+            coverImagePreview.src = URL.createObjectURL(file)
+        })
+    </script>
 @endsection
