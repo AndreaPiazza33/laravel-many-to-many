@@ -32,7 +32,8 @@ class UpdateProjectRequest extends FormRequest
             'description'=> ['required', 'string'],
             'type_id'=> ['nullable', 'exists:types,id'],
             'technologies'=> ['nullable', 'exists:technologies,id'],
-            'link'=> ['required', 'url']
+            'link'=> ['required', 'url'],
+            'cover_image'=> ['nullable', 'image', 'max:512'],
         ];
     }
 
@@ -51,6 +52,9 @@ class UpdateProjectRequest extends FormRequest
             'type_id.exists' => 'La tipologia inserita non è valida',
 
             'technologies.exists' => 'La tecnologia inserita non è valida',
+
+            'cover_image.image' => 'Il File caricato deve essere un\'immagine',
+            'cover_image.max' => 'Il File caricato deve avere una dimensione inferiore a 512KB',
         ];
     }
 }

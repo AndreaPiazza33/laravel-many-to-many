@@ -22,12 +22,34 @@
     </div>
 
     <div class="container">
-        <form method="POST" action="{{ route('admin.projects.update', $project) }}" class="row">
+        <form method="POST" action="{{ route('admin.projects.update', $project) }}" enctype="multipart/form-data"
+            class="row">
             @method('PATCH')
             @csrf
             <div class="col-12 mt-3">
                 <label for="title" class="form-label">Titolo</label>
                 <input type="text" name="title" id="title" class="form-control" value="{{ $project->tile }}">
+            </div>
+
+            <div class="col-12 mt-3">
+
+                <div class="d-flex align-items-center row">
+                    <div class="col-10">
+                        <label for="cover_image" class="form-label ">Immagine di Copertina</label>
+                        <input type="file" name="cover_image" id="cover_image"
+                            class="form-control @error('cover_image') is-invalid @enderror"
+                            value="{{ old('cover_image') }}">
+                        @error('cover_image')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                    <div class="col-2">
+                        <img src="{{ asset('/storage/' . $project->cover_image) }}" class ="img-fluid" alt="">
+                    </div>
+                </div>
+
             </div>
 
             <div class="col-12 mt-3">

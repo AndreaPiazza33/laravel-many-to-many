@@ -8,9 +8,12 @@
 @endsection
 
 @section('content')
-    <header class="container py-5">
+    <header class="container py-1">
     </header>
     <div class="container mt-3">
+        <div class="d-flex justify-content-center row">
+            <img src="{{ asset('/storage/' . $project->cover_image) }}" class ="img-fluid col-3" alt="">
+        </div>
         <p>
         <h3>Description</h3><br>
         {{ $project->description }}
